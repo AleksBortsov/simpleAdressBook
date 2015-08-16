@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SimpleSQL</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="name">Name</string>
+    <string name="names">Names</string>
+    <string name="create">CreateName</string>
+    <string name="mail">Mail</string>
+</resources>
