@@ -22,6 +22,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     DBHelper dbHelper;
     final String LOG_TAG = "Logs";
 
+    private static final String NAME = "name";
+    private static final String MAIL = "mail";
+    private static final String TABLE = "myTable";
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,12 +78,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.btnCreate:
                 Log.d(LOG_TAG, "--Insert my DataBase---");
-                contentValues.put("name", name);
-                contentValues.put("mail", mail);
+                contentValues.put(NAME, name);
+                contentValues.put(MAIL, mail);
 
-                long rowID = db.insert("firstTable", null, contentValues);
+                long rowID = db.insert(TABLE, null, contentValues);
                 Log.d(LOG_TAG, "---row Insert Id--- " + rowID);
-                tvView.setText("You name: " + name+"  "+"You mail: " + mail);
+                tvView.setText("You name: " + name + "  " + "You mail: " + mail);
                 break;
         }
 
@@ -88,24 +92,22 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     class DBHelper extends SQLiteOpenHelper {
         public DBHelper(Context context) {
-            super(context, "firstTable", null, 1);
+            super(context, TABLE, null, 1);
         }
 
 
         @Override
         public void onCreate(SQLiteDatabase db) {
             Log.d(LOG_TAG, "---create DataBase---");
-            db.execSQL("create table firstTable ("
+            db.execSQL("create table " + TABLE + "  ("
                     + "id integer primary key autoincrement, "
-                    + "name text"
-                    + "mail text" + " );");
-
+                    + NAME + " text"
+                    + MAIL + " text" + " );");
         }
 
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
         }
     }
 }
