@@ -73,7 +73,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.btnCreate:
-
                 Log.d(LOG_TAG, "--Insert my DataBase---");
                 contentValues.put("name", name);
                 contentValues.put("mail", mail);
@@ -89,7 +88,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     class DBHelper extends SQLiteOpenHelper {
         public DBHelper(Context context) {
-            super(context, "myData", null, 1);
+            super(context, "firstTable", null, 1);
         }
 
 
