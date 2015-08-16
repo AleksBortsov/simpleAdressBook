@@ -18,10 +18,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
     Button btnCreate;
     EditText etSimple, etMail;
     TextView tvView;
-
     DBHelper dbHelper;
-    final String LOG_TAG = "Logs";
 
+    private static final String LOG_TAG = "Logs";
     private static final String NAME = "name";
     private static final String MAIL = "mail";
     private static final String TABLE = "myTable";
@@ -64,7 +63,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     public void onClick(View v) {
 
@@ -101,10 +99,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
             Log.d(LOG_TAG, "---create DataBase---");
             db.execSQL("create table " + TABLE + "  ("
                     + "id integer primary key autoincrement, "
-                    + NAME + " text"
-                    + MAIL + " text" + " );");
+                    + NAME + " text, "
+                    + MAIL + " text );");
         }
-
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
