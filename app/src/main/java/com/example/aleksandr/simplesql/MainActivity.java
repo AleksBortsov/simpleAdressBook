@@ -3,9 +3,11 @@ package com.example.aleksandr.simplesql;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.support.annotation.IntRange;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,14 +18,17 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     Button btnCreate;
-    EditText etSimple, etMail;
-    TextView tvView;
+    EditText etSimple, etMail, etTelephone;
+    TextView tvName, tvTele, tvMail;
     DBHelper dbHelper;
+
 
     private static final String LOG_TAG = "Logs";
     private static final String NAME = "name";
     private static final String MAIL = "mail";
     private static final String TABLE = "myTable";
+    private static final String TELE = "telephone";
+    private static final int NUMBER_DB = 1;
 
     @Override
 
@@ -31,12 +36,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        tvView = (TextView) findViewById(R.id.tvView);
+
         btnCreate = (Button) findViewById(R.id.btnCreate);
         btnCreate.setOnClickListener(this);
 
         etSimple = (EditText) findViewById(R.id.etSimple);
         etMail = (EditText) findViewById(R.id.etMail);
+        etTelephone = (EditText) findViewById(R.id.etTelephone);
 
         dbHelper = new DBHelper(this);
     }
@@ -70,6 +76,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         String name = etSimple.getText().toString();
         String mail = etMail.getText().toString();
+        String telephone = etTelephone.getText().toString();
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -78,10 +85,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 Log.d(LOG_TAG, "--Insert my DataBase---");
                 contentValues.put(NAME, name);
                 contentValues.put(MAIL, mail);
+                contentValues.put(TELE, telephone);
 
                 long rowID = db.insert(TABLE, null, contentValues);
                 Log.d(LOG_TAG, "---row Insert Id--- " + rowID);
-                tvView.setText("You name: " + name + "  " + "You mail: " + mail);
+
+                Intent intent = new Intent(this, ActivitySave.class);
+                intent.putExtra(MAIL, etMail.getText().toString());
+                intent.putExtra(TELE, etTelephone.getText().toString());
+                intent.putExtra(MAIL, etMail.getText().toString());
+                startActivity(intent);
                 break;
         }
 
@@ -90,7 +103,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     class DBHelper extends SQLiteOpenHelper {
         public DBHelper(Context context) {
-            super(context, TABLE, null, 1);
+            super(context, TABLE, null, NUMBER_DB);
         }
 
 
@@ -100,7 +113,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
             db.execSQL("create table " + TABLE + "  ("
                     + "id integer primary key autoincrement, "
                     + NAME + " text, "
-                    + MAIL + " text );");
+                    + MAIL + " text, "
+                    + TELE + " text);");
         }
 
         @Override

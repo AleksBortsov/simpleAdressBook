@@ -43,6 +43,26 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ll3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tele" />
+
+        <EditText
+            android:id="@+id/etTelephone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:inputType="numberDecimal" />
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/btnCreate"
         android:layout_width="match_parent"
@@ -50,11 +70,5 @@
         android:layout_marginTop="20dp"
         android:text="@string/create" />
 
-    <TextView
-        android:id="@+id/tvView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="@string/names" />
+
 </LinearLayout>
