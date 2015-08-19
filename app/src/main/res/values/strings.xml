@@ -5,8 +5,12 @@
     <string name="action_settings">Settings</string>
     <string name="name">Name</string>
     <string name="names">Name</string>
-    <string name="create">Create</string>
+    <string name="create">Create new contact</string>
     <string name="mail">Mail</string>
     <string name="tele">Telephone</string>
     <string name="you">You Create a new contact with:</string>
+    <string name="lastName">Last Name</string>
+    <string name="enter">enter Last Name</string>
+    <string name="createContactLayout">Now you create a new contact</string>
+    <string name="btnOk">OK</string>
 </resources>
