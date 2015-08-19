@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +29,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     Button btnCreate;
     TextView tvMainName, tvMainLastName;
+    Layout ll5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         tvMainName.setOnClickListener(this);
 
         tvMainLastName = (TextView) findViewById(R.id.tvMainLastName);
+
+        //ll5=(Layout)findViewById(R.id.ll5);
+
     }
 
     @Override
@@ -61,26 +66,31 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-
-        Intent intent = new Intent(this, ActivityEnterDataOfContact.class);
-        startActivityForResult(intent, NUMBER_DB);
-
-
+        switch (v.getId()) {
+            case R.id.btnCreate:
+                Intent intent = new Intent(this, ActivityEnterDataOfContact.class);
+                startActivityForResult(intent, NUMBER_DB);
+                break;
+            case R.id.ll5:
+                Intent intent1 = new Intent(this, ActivityVisuallyWhatSave.class);
+                startActivity(intent1);
+                break;
+        }
 
 
     }
 
     @Override
-    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data == null) {
             return;
         }
         String name = data.getStringExtra(NAME);
         String lastName = data.getStringExtra(LAST_NAME);
-        tvMainName.setText("LastName=" + lastName);
-        tvMainLastName.setText("Your name is " + name);
+        tvMainName.setText("LastName=" + lastName + "; ");
+        tvMainLastName.setText("Name " + name);
 
-        Log.d(LOG_TAG, "---rows in my table: ");
-       // Cursor cursor=;
+        //Log.d(LOG_TAG, "---rows in my table: ");
+        // Cursor cursor=;
     }
 }
