@@ -1,20 +1,13 @@
 package com.example.aleksandr.simplesql;
 
 import android.app.Activity;
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.text.Layout;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -31,6 +24,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     TextView tvMainName, tvMainLastName;
     Layout ll5;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +38,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         tvMainLastName = (TextView) findViewById(R.id.tvMainLastName);
 
-        //ll5=(Layout)findViewById(R.id.ll5);
-
+//        ll5 = (Layout) findViewById(R.id.ll5);
     }
 
     @Override
@@ -60,7 +53,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -76,8 +68,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(intent1);
                 break;
         }
-
-
     }
 
     @Override

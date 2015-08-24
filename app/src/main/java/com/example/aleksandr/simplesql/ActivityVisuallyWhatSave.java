@@ -30,12 +30,9 @@ public class ActivityVisuallyWhatSave extends Activity implements View.OnClickLi
         tvName.setText("Name: " + intent.getStringExtra(NAME));
         tvMail.setText("Mail: " + intent.getStringExtra(MAIL));
         tvTele.setText("Telephone: " + intent.getStringExtra(TELE));
-
-
     }
 
     @Override
     public void onClick(View v) {
-
     }
 }

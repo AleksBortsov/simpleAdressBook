@@ -126,7 +126,6 @@ public class ActivityEnterDataOfContact extends Activity implements View.OnClick
                     + MAIL + " text, "
                     + TELE + " text );");
         }
-
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 

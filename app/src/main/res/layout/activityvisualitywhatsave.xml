@@ -37,6 +37,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/mail" />
 
+
     <TextView
         android:id="@+id/tvTele"
         android:layout_width="wrap_content"
