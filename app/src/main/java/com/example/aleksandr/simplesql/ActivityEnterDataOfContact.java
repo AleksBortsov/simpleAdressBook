@@ -95,8 +95,8 @@ public class ActivityEnterDataOfContact extends Activity implements View.OnClick
             do {
 
                 Log.d(LOG_TAG, "ID= " + cursor.getInt(indexColimID)
-                        + "name= " + cursor.getString(indexColumName)
-                        + "lastName= " + cursor.getString(indexColumLastName));
+                        + "; name= " + cursor.getString(indexColumName)
+                        + "; lastName= " + cursor.getString(indexColumLastName));
 
             } while (cursor.moveToNext());
         } else

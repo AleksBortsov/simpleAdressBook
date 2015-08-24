@@ -3,6 +3,8 @@ package com.example.aleksandr.simplesql;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,12 +19,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private static final String TABLE = "Contacts";
     private static final String TELE = "telephone";
     private static final String LAST_NAME = "lastName";
-
     private static final int NUMBER_DB = 1;
 
     Button btnCreate;
     TextView tvMainName, tvMainLastName;
     Layout ll5;
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
 
     @Override
@@ -38,7 +43,25 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         tvMainLastName = (TextView) findViewById(R.id.tvMainLastName);
 
-//        ll5 = (Layout) findViewById(R.id.ll5);
+        //-------------------NEW PART OF CLASS--------------------
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerViewXml);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        mRecyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+
+
+
+
+        //mAdapter = new MyAdapter(myDataset);
+        mRecyclerView.setAdapter(mAdapter);
+
     }
 
     @Override
