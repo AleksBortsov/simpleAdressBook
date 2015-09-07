@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends Activity implements View.OnClickListener {
     private static final String LOG_TAG = "Logs";
     private static final String NAME = "name";
@@ -49,17 +51,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        ArrayList<Contact> contacts = new ArrayList<Contact>();
+        contacts.add(new Contact("",""));
 
-
-
-
-        //mAdapter = new MyAdapter(myDataset);
+        mAdapter = new MyAdapter(contacts);
         mRecyclerView.setAdapter(mAdapter);
 
     }

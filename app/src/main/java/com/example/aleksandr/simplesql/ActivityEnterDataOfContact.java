@@ -18,6 +18,7 @@ import android.widget.EditText;
  */
 public class ActivityEnterDataOfContact extends Activity implements View.OnClickListener {
 
+
     private static final String LOG_TAG = "Logs";
     private static final String NAME = "name";
     private static final String MAIL = "mail";
@@ -94,6 +95,8 @@ public class ActivityEnterDataOfContact extends Activity implements View.OnClick
             int indexColumLastName = cursor.getColumnIndex(LAST_NAME);
             do {
 
+                Contact contact=new Contact(cursor.getString(indexColumName),getString(indexColumLastName));
+
                 Log.d(LOG_TAG, "ID= " + cursor.getInt(indexColimID)
                         + "; name= " + cursor.getString(indexColumName)
                         + "; lastName= " + cursor.getString(indexColumLastName));
@@ -126,9 +129,9 @@ public class ActivityEnterDataOfContact extends Activity implements View.OnClick
                     + MAIL + " text, "
                     + TELE + " text );");
         }
+
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
         }
     }
 }
