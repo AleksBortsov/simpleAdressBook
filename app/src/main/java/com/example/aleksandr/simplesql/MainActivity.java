@@ -2,6 +2,8 @@ package com.example.aleksandr.simplesql;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,9 +14,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.aleksandr.simplesql.ActivityEnterDataOfContact.DBHelper;
+
 import java.util.ArrayList;
 
+import static com.example.aleksandr.simplesql.ActivityEnterDataOfContact.ID;
+import static com.example.aleksandr.simplesql.ActivityEnterDataOfContact.LAST_NAME;
+import static com.example.aleksandr.simplesql.ActivityEnterDataOfContact.NAME;
+import static com.example.aleksandr.simplesql.ActivityEnterDataOfContact.TABLE;
+
 public class MainActivity extends Activity implements View.OnClickListener {
+
     private static final String LOG_TAG = "Logs";
     private static final String NAME = "name";
     private static final String MAIL = "mail";
@@ -40,8 +50,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btnCreate = (Button) findViewById(R.id.btnCreate);
         btnCreate.setOnClickListener(this);
 
-        tvMainName = (TextView) findViewById(R.id.tvMainName);
-        tvMainName.setOnClickListener(this);
+//        tvMainName = (TextView) findViewById(R.id.tvMainName);
+//        tvMainName.setOnClickListener(this);
 
         tvMainLastName = (TextView) findViewById(R.id.tvMainLastName);
 
@@ -57,8 +67,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         ArrayList<Contact> contacts = new ArrayList<Contact>();
-        contacts.add(new Contact("",""));
 
+        DBHelper dbHelper = new DBHelper(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.query(TABLE, null, null, null, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            int indexColimID = cursor.getColumnIndex(ID);
+            int indexColumName = cursor.getColumnIndex(NAME);
+            int indexColumLastName = cursor.getColumnIndex(LAST_NAME);
+            do {
+                Contact contact = new Contact(cursor.getString(indexColumName), cursor.getString(indexColumLastName));
+                contacts.add(contact);
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
         mAdapter = new MyAdapter(contacts);
         mRecyclerView.setAdapter(mAdapter);
 
@@ -100,8 +123,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
         String name = data.getStringExtra(NAME);
         String lastName = data.getStringExtra(LAST_NAME);
-        tvMainName.setText("LastName=" + lastName + "; ");
-        tvMainLastName.setText("Name " + name);
+//        tvMainName.setText("LastName=" + lastName + "; ");
+//        tvMainLastName.setText("Name " + name);
 
         //Log.d(LOG_TAG, "---rows in my table: ");
         // Cursor cursor=;

@@ -19,14 +19,14 @@ import android.widget.EditText;
 public class ActivityEnterDataOfContact extends Activity implements View.OnClickListener {
 
 
-    private static final String LOG_TAG = "Logs";
-    private static final String NAME = "name";
-    private static final String MAIL = "mail";
-    private static final String TABLE = "Contacts";
-    private static final String TELE = "telephone";
-    private static final String LAST_NAME = "lastName";
-    private static final int NUMBER_DB = 1;
-    private static final String ID = "id";
+    public static final String LOG_TAG = "Logs";
+    public static final String NAME = "name";
+    public static final String MAIL = "mail";
+    public static final String TABLE = "Contacts";
+    public static final String TELE = "telephone";
+    public static final String LAST_NAME = "lastName";
+    public static final int NUMBER_DB = 1;
+    public static final String ID = "id";
 
 
     EditText etName, etMail, etTelephone, etLastName;
@@ -63,7 +63,7 @@ public class ActivityEnterDataOfContact extends Activity implements View.OnClick
         String lastName = etLastName.getText().toString();
         String telephone = etTelephone.getText().toString();
 
-        // Подклчаемся к базе данных
+        // Подклчаемся к базе данных - get rid of this
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         Log.d(LOG_TAG, "---Insert Contscts---");
@@ -88,24 +88,6 @@ public class ActivityEnterDataOfContact extends Activity implements View.OnClick
 
         Log.d(LOG_TAG, "--rows in my Table---");
 
-        Cursor cursor = db.query(TABLE, null, null, null, null, null, null, null);
-        if (cursor.moveToFirst()) {
-            int indexColimID = cursor.getColumnIndex(ID);
-            int indexColumName = cursor.getColumnIndex(NAME);
-            int indexColumLastName = cursor.getColumnIndex(LAST_NAME);
-            do {
-
-                Contact contact=new Contact(cursor.getString(indexColumName),getString(indexColumLastName));
-
-                Log.d(LOG_TAG, "ID= " + cursor.getInt(indexColimID)
-                        + "; name= " + cursor.getString(indexColumName)
-                        + "; lastName= " + cursor.getString(indexColumLastName));
-
-            } while (cursor.moveToNext());
-        } else
-            Log.d(LOG_TAG, "---NO ROWS---" + rowId);
-        cursor.close();
-
         // закрываем сбыти intent
         finish();
 
@@ -115,7 +97,7 @@ public class ActivityEnterDataOfContact extends Activity implements View.OnClick
     }
 
     // вспомогательный класс для создания базы данных
-    class DBHelper extends SQLiteOpenHelper {
+    public static class DBHelper extends SQLiteOpenHelper {
         public DBHelper(Context context) {
             super(context, TABLE, null, NUMBER_DB);
         }
